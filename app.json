@@ -4,7 +4,7 @@
     "slug": "burger-run",
     "version": "1.0.0",
     "android": {
-      "package": "com.JaxL9.burgerrun"
+      "package": "com.yourname.burgerrun"
     }
   }
 }
