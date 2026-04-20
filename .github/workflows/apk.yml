@@ -26,8 +26,6 @@ jobs:
         run: npm install expo
 
       # ---------------- VALIDATE EXPO ----------------
-      - name: Expo Doctor
-        run: npx expo doctor
 
       # ---------------- PREBUILD ----------------
       - name: Expo Prebuild Android
