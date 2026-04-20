@@ -1,4 +1,4 @@
-name: Build APK (Clean Expo Prebuild)
+name: Build Burger Run APK
 
 on:
   workflow_dispatch:
@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # ---------------- CHECKOUT ----------------
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -17,19 +18,21 @@ jobs:
         with:
           node-version: 20
 
-      # ---------------- INSTALL DEPENDENCIES ----------------
+      # ---------------- INSTALL ----------------
       - name: Install dependencies
         run: npm install
 
-      # ---------------- ENSURE EXPO IS INSTALLED ----------------
-      - name: Install Expo SDK
-        run: npm install expo
+      # ---------------- FORCE EXPO INSTALL ----------------
+      - name: Install Expo properly
+        run: npx expo install expo react react-native
 
-      # ---------------- VALIDATE EXPO ----------------
+      # ---------------- CLEAN ANDROID ----------------
+      - name: Clean old Android build
+        run: rm -rf android
 
       # ---------------- PREBUILD ----------------
-      - name: Expo Prebuild Android
-        run: npx expo prebuild --platform android --clean
+      - name: Expo Prebuild (stable)
+        run: npx expo prebuild --platform android --clean --no-install
 
       # ---------------- JAVA ----------------
       - name: Setup Java
@@ -39,7 +42,7 @@ jobs:
           java-version: 17
 
       # ---------------- BUILD APK ----------------
-      - name: Build APK
+      - name: Build Release APK
         run: |
           cd android
           chmod +x gradlew
