@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "Burger Run",
+    "slug": "burger-run",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["android"]
+  }
+}
