@@ -1,15 +1,16 @@
-name: Build Expo APK
+name: Build Android APK (Expo EAS)
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -23,7 +24,7 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Build APK with EAS
-        run: eas build -p android --non-interactive
+      - name: Build APK using Expo EAS
+        run: eas build -p android --non-interactive --wait
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
