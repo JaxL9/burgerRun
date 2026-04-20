@@ -1,4 +1,4 @@
-name: Simple APK Build
+name: Build APK (Clean Expo Prebuild)
 
 on:
   workflow_dispatch:
@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ---------------- CHECKOUT ----------------
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -18,12 +17,20 @@ jobs:
         with:
           node-version: 20
 
-      # ---------------- INSTALL ----------------
+      # ---------------- INSTALL DEPENDENCIES ----------------
       - name: Install dependencies
         run: npm install
 
-      # ---------------- EXPO PREBUILD ----------------
-      - name: Expo Prebuild (Android)
+      # ---------------- ENSURE EXPO IS INSTALLED ----------------
+      - name: Install Expo SDK
+        run: npm install expo
+
+      # ---------------- VALIDATE EXPO ----------------
+      - name: Expo Doctor
+        run: npx expo doctor
+
+      # ---------------- PREBUILD ----------------
+      - name: Expo Prebuild Android
         run: npx expo prebuild --platform android --clean
 
       # ---------------- JAVA ----------------
