@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "platforms": ["android"],
     "android": {
-      "package": "com.yourname.burgerrun"
+      "package": "com.JaxL9.burgerrun"
     }
   }
 }
